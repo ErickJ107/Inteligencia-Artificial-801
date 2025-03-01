@@ -1,0 +1,38 @@
+Bosquejo de base de datos de un supermercado
+
+Tabla clientes
+	Almacena la información de los clientes
+- ID clientes
+- Nombre
+- Dirección
+- Teléfono
+- Correo
+
+Tabla productos
+	Almacena la información de los productos
+- ID productos
+- Descripción
+- Precio
+- Existencias
+- Codigo
+
+Tabla ordenes
+	Almacenas la información de las ordenes realizadas por los clientes
+- ID orden
+- ID cliente
+- Productos
+- Fecha de orden
+- Fecha de entrega
+- Monto total
+
+Vista Clientes activos
+	Muestra a los clientes activos en los ultimos meses
+create diew clientesactivos as
+select distinct c.id_cliente, c.nombre, c.correo
+from clientes c
+join ordenes o on c.id_cliente = o.id_cliente
+where o.fecha_orden >= add_months(sysdate, -6);
+
+Actualizar una tabla
+alter table clientes add colonia
+alter table ordenes add dirección
